@@ -3,224 +3,1277 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earicular Capstone | BME 180C</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Earicular — Restoring Ears. Restoring Childhoods.</title>
+  <meta name="description" content="Earicular is a UC Irvine BME senior design project developing 3D bioprinted auricular constructs for pediatric ear reconstruction." />
+
+  <!-- Google Fonts: Inter for body, Playfair Display for headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================================
+       DESIGN TOKENS
+       ========================================================= */
+    :root {
+      --cream:        #FBF7F1;
+      --cream-2:      #F5EFE6;
+      --teal:         #4ABCB0;
+      --teal-deep:    #2F8C83;
+      --teal-soft:    #DCF1EE;
+      --coral:        #F0857A;
+      --coral-soft:   #FBE3DF;
+      --sage:         #A6CFA1;
+      --sage-soft:    #E5F1E2;
+      --slate:        #2B3340;
+      --slate-2:      #4F5A6B;
+      --slate-3:      #8A93A1;
+      --line:         #E7E1D6;
+      --shadow-sm:    0 2px 8px rgba(43, 51, 64, 0.06);
+      --shadow-md:    0 8px 24px rgba(43, 51, 64, 0.08);
+      --shadow-lg:    0 18px 40px rgba(43, 51, 64, 0.10);
+      --radius-sm:    10px;
+      --radius-md:    16px;
+      --radius-lg:    24px;
+      --maxw:         1180px;
+    }
+
+    /* =========================================================
+       RESET / BASE
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--slate);
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--slate);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin: 0 0 0.6em;
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 600; }
+    h2 { font-size: clamp(1.9rem, 3.4vw, 2.6rem); font-weight: 600; }
+    h3 { font-size: 1.3rem; font-weight: 600; }
+    p { margin: 0 0 1em; color: var(--slate-2); }
+    a { color: var(--teal-deep); text-decoration: none; transition: color .2s; }
+    a:hover { color: var(--teal); }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; }
+
+    .container {
+      width: min(100% - 2.5rem, var(--maxw));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: .8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--teal-deep);
+      background: var(--teal-soft);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 1.2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: .95rem;
+      cursor: pointer;
+      border: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(74, 188, 176, 0.35);
+    }
+    .btn-primary:hover { background: var(--teal-deep); transform: translateY(-2px); color: #fff; }
+    .btn-outline {
+      background: transparent;
+      color: var(--teal-deep);
+      border: 1.5px solid var(--teal);
+    }
+    .btn-outline:hover { background: var(--teal-soft); transform: translateY(-2px); }
+
+    /* =========================================================
+       NAVBAR
+       ========================================================= */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(251, 247, 241, 0.85);
+      backdrop-filter: saturate(140%) blur(12px);
+      -webkit-backdrop-filter: saturate(140%) blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .navbar.scrolled {
+      border-color: var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .brand {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: 0.18em;
+      color: var(--teal-deep);
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .brand-mark {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), var(--teal-deep));
+      display: inline-block;
+      position: relative;
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 2.5px solid #fff;
+      border-radius: 50% 50% 50% 30%;
+      transform: rotate(-15deg);
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      margin: 0; padding: 0;
+    }
+    .nav-links a {
+      color: var(--slate-2);
+      font-weight: 500;
+      font-size: .95rem;
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -4px;
+      height: 2px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform .25s ease;
+    }
+    .nav-links a:hover { color: var(--teal-deep); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      width: 40px; height: 40px;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .nav-toggle span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: var(--slate);
+      margin: 5px 0;
+      transition: transform .25s ease, opacity .25s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 72px);
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(74, 188, 176, 0.18), transparent 60%),
+        radial-gradient(800px 500px at 0% 100%, rgba(240, 133, 122, 0.12), transparent 60%),
+        linear-gradient(180deg, var(--cream) 0%, #F4F8F6 100%);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 3rem;
+      align-items: center;
+      padding: 4rem 0;
+    }
+    .hero h1 span.accent {
+      background: linear-gradient(120deg, var(--teal-deep), var(--teal));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-style: italic;
+    }
+    .hero p.lead {
+      font-size: 1.15rem;
+      color: var(--slate-2);
+      max-width: 540px;
+      margin-bottom: 2rem;
+    }
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 420px;
+    }
+    .hero-blob {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(74,188,176,0.18), transparent 65%);
+      animation: floaty 8s ease-in-out infinite;
+    }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50%     { transform: translateY(-12px); }
+    }
+    .hero-svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      filter: drop-shadow(0 18px 30px rgba(47, 140, 131, 0.18));
+    }
+
+    /* =========================================================
+       SECTIONS
+       ========================================================= */
+    section {
+      padding: 6rem 0;
+      position: relative;
+    }
+    .section-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 3.5rem;
+    }
+    .section-head p {
+      font-size: 1.05rem;
+    }
+    .alt-bg { background: var(--cream-2); }
+
+    /* Reveal-on-scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* =========================================================
+       PRODUCT SECTION
+       ========================================================= */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--line);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--teal-soft);
+      color: var(--teal-deep);
+      display: grid; place-items: center;
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    .card h3 {
+      margin-bottom: .6rem;
+    }
+    .stat-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .stat {
+      background: var(--cream-2);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: .9rem;
+      color: var(--slate-2);
+    }
+    .stat strong { color: var(--teal-deep); }
+
+    .extearna-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: center;
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin-top: 2rem;
+      border: 1px solid var(--line);
+    }
+    .extearna-img {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--cream-2);
+    }
+    .extearna-img img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .solution-callout {
+      margin-top: 2.5rem;
+      padding: 2.5rem;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--teal-soft), #fff);
+      border: 1px solid var(--teal-soft);
+      text-align: center;
+    }
+    .solution-callout h3 {
+      color: var(--teal-deep);
+    }
+
+    /* =========================================================
+       RESEARCH SECTION
+       ========================================================= */
+    .research-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4.5rem;
+    }
+    .research-row:last-child { margin-bottom: 0; }
+    .research-row.flip .research-text { order: 2; }
+    .research-row.flip .research-visual { order: 1; }
+
+    .research-visual {
+      aspect-ratio: 1;
+      max-width: 360px;
+      width: 100%;
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--teal-soft), var(--cream-2));
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+    .research-visual::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 2px dashed rgba(74,188,176,0.3);
+      border-radius: var(--radius-md);
+    }
+    .research-icon {
+      font-size: 5rem;
+      filter: drop-shadow(0 6px 10px rgba(47,140,131,0.2));
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+      background: var(--coral-soft);
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    /* =========================================================
+       COMPETITOR TABLE
+       ========================================================= */
+    .table-wrap {
+      overflow-x: auto;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+    }
+    table.compare {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    table.compare thead th {
+      background: var(--cream-2);
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--slate);
+      padding: 1.25rem 1rem;
+      text-align: left;
+      border-bottom: 2px solid var(--line);
+      cursor: pointer;
+      transition: background .25s ease;
+    }
+    table.compare th:first-child { border-top-left-radius: var(--radius-lg); }
+    table.compare th:last-child  { border-top-right-radius: var(--radius-lg); }
+    table.compare tbody td {
+      padding: 1.1rem 1rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: .95rem;
+      color: var(--slate-2);
+      transition: background .25s ease;
+    }
+    table.compare tbody tr:last-child td { border-bottom: none; }
+    table.compare tbody td:first-child {
+      font-weight: 600;
+      color: var(--slate);
+      background: var(--cream);
+    }
+
+    /* Row hover */
+    table.compare tbody tr:hover td {
+      background: var(--teal-soft) !important;
+    }
+    /* Column hover (driven by JS adding .col-hl) */
+    table.compare td.col-hl,
+    table.compare th.col-hl {
+      background: rgba(74, 188, 176, 0.18) !important;
+    }
+
+    .badge {
+      display: inline-block;
+      font-weight: 700;
+      font-size: .85rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-right: .5rem;
+      letter-spacing: .03em;
+    }
+    .badge.pp { background: var(--teal); color: #fff; }
+    .badge.p  { background: var(--sage-soft); color: #4a7a44; }
+    .badge.mm { background: var(--coral-soft); color: #b04a40; }
+
+    /* =========================================================
+       MARKET STRATEGY (PLACEHOLDER)
+       ========================================================= */
+    .market-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 4rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      border: 1px dashed var(--line);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .market-icon {
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      background: var(--teal-soft);
+      color: var(--teal-deep);
+      display: grid; place-items: center;
+      margin: 0 auto 1.4rem;
+      font-size: 2rem;
+    }
+    .market-card .progress-bar {
+      max-width: 280px;
+      height: 6px;
+      background: var(--cream-2);
+      border-radius: 999px;
+      margin: 1.5rem auto 0;
+      overflow: hidden;
+    }
+    .market-card .progress-bar span {
+      display: block;
+      width: 35%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--teal-deep));
+      border-radius: 999px;
+      animation: progressPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes progressPulse {
+      0%, 100% { width: 30%; }
+      50%      { width: 60%; }
+    }
+
+    /* =========================================================
+       TEAM
+       ========================================================= */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .team-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--line);
+      transition: transform .3s ease, box-shadow .3s ease;
+      text-align: center;
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .avatar {
+      width: 140px; height: 140px;
+      margin: 0 auto 1.2rem;
+      border-radius: var(--radius-md);
+      border: 3px solid var(--teal);
+      background: linear-gradient(135deg, var(--teal-soft), var(--cream-2));
+      display: grid;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--teal-deep);
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(74,188,176,0.18);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .team-card h3 { margin-bottom: .15rem; }
+    .team-card .role {
+      color: var(--teal-deep);
+      font-size: .9rem;
+      font-weight: 600;
+      margin-bottom: .35rem;
+    }
+    .team-card .degree {
+      color: var(--slate-3);
+      font-size: .85rem;
+      margin-bottom: .75rem;
+    }
+    .team-card .email {
+      display: inline-block;
+      font-size: .9rem;
+      margin-bottom: 1rem;
+      word-break: break-all;
+    }
+    .team-card .facts {
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      font-style: italic;
+      font-size: .85rem;
+      color: var(--slate-3);
+      line-height: 1.55;
+    }
+    .team-card .facts span { display: block; }
+
+    /* =========================================================
+       CONTACT
+       ========================================================= */
+    .contact-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-form {
+      margin-top: 2.5rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+    .contact-form .field {
+      margin-bottom: 1rem;
+    }
+    .contact-form label {
+      display: block;
+      font-size: .85rem;
+      font-weight: 600;
+      color: var(--slate-2);
+      margin-bottom: .35rem;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: .95rem;
+      color: var(--slate);
+      background: var(--cream);
+      transition: border-color .2s, background .2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--teal);
+      background: #fff;
+    }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form .btn { width: 100%; justify-content: center; }
+
+    .mailto-btn {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    footer {
+      background: var(--cream-2);
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      padding: 0; margin: 0;
+    }
+    .footer-links a {
+      color: var(--slate-2);
+      font-size: .9rem;
+    }
+    .footer-copy {
+      font-size: .9rem;
+      color: var(--slate-3);
+      margin: 0;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .product-grid,
+      .research-row,
+      .extearna-block { grid-template-columns: 1fr; }
+      .research-row.flip .research-text  { order: 1; }
+      .research-row.flip .research-visual { order: 2; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero { min-height: auto; padding: 2rem 0; }
+      .hero-grid { padding: 2.5rem 0; }
+      section { padding: 4rem 0; }
+    }
+    @media (max-width: 680px) {
+      .nav-links {
+        position: absolute;
+        top: 72px; left: 0; right: 0;
+        flex-direction: column;
+        background: var(--cream);
+        padding: 1.5rem;
+        gap: 1.2rem;
+        border-bottom: 1px solid var(--line);
+        box-shadow: var(--shadow-sm);
+        transform: translateY(-12px);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform .25s ease, opacity .25s;
+      }
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .nav-toggle { display: block; }
+      .team-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2.1rem; }
+      .extearna-block, .market-card { padding: 1.75rem; }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header" id="home">
-    <div class="container nav-container">
-      <a class="logo" href="#home">Earicular</a>
-      <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false">Menu</button>
-      <nav>
-        <ul id="primary-navigation" class="nav-links">
-          <li><a href="#product">Product</a></li>
-          <li><a href="#needs">Needs</a></li>
-          <li><a href="#competition">Competition</a></li>
-          <li><a href="#strategy">Strategy</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#presentation">Presentation</a></li>
-          <li><a href="#pitch">Pitch</a></li>
-        </ul>
-      </nav>
+
+<!-- =========================================================
+     1. NAVBAR
+     ========================================================= -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      EARICULAR
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#competitors">Competitors</a></li>
+        <li><a href="#market">Market</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- =========================================================
+     2. HERO / HOME
+     ========================================================= -->
+<section id="home" class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">UC Irvine BME Senior Design</span>
+      <h1>Restoring Ears.<br/><span class="accent">Restoring Childhoods.</span></h1>
+      <p class="lead">
+        A tissue-engineered reconstruction project to restore natural ear shape
+        for patients with congenital deformities.
+      </p>
+      <a href="#product" class="btn btn-primary">
+        Learn More
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="hero-blob" aria-hidden="true"></div>
+      <!-- Decorative ear/wave SVG -->
+      <svg class="hero-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="earGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%"  stop-color="#4ABCB0"/>
+            <stop offset="100%" stop-color="#2F8C83"/>
+          </linearGradient>
+          <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"  stop-color="#F0857A" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#4ABCB0" stop-opacity="0.5"/>
+          </linearGradient>
+        </defs>
+        <!-- Soft background circle -->
+        <circle cx="200" cy="200" r="170" fill="#FBF7F1"/>
+        <!-- Concentric soundwaves -->
+        <path d="M 80 200 Q 110 150, 160 200 T 240 200" stroke="url(#waveGrad)" stroke-width="3" fill="none" opacity="0.6"/>
+        <path d="M 60 230 Q 100 170, 170 230 T 280 230" stroke="url(#waveGrad)" stroke-width="3" fill="none" opacity="0.45"/>
+        <!-- Stylized ear shape -->
+        <path d="M 250 110
+                 C 310 110, 340 170, 330 230
+                 C 325 270, 300 300, 270 305
+                 C 250 308, 240 295, 240 280
+                 C 240 265, 255 260, 265 250
+                 C 280 235, 285 215, 275 195
+                 C 265 180, 240 175, 230 195
+                 C 220 215, 230 235, 215 240
+                 C 200 245, 195 225, 200 200
+                 C 205 165, 215 130, 250 110 Z"
+              fill="url(#earGrad)" opacity="0.92"/>
+        <!-- Inner ear curl -->
+        <path d="M 255 175 C 275 180, 280 205, 265 220 C 255 230, 245 225, 250 210"
+              stroke="#FBF7F1" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Decorative dots -->
+        <circle cx="120" cy="130" r="6" fill="#F0857A" opacity="0.6"/>
+        <circle cx="100" cy="290" r="4" fill="#4ABCB0" opacity="0.7"/>
+        <circle cx="320" cy="320" r="5" fill="#F0857A" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     3. PRODUCT EXPLANATION
+     ========================================================= -->
+<section id="product" class="alt-bg">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Product</span>
+      <h2>Engineering a path to natural ear restoration</h2>
+      <p>Combining clinical insight, allograft tissue, and 3D bioprinting to address microtia in a way that's gentler on patients.</p>
     </div>
 
-    <div class="hero container">
-      <div class="hero-copy">
-        <p class="eyebrow">BME 180C Senior Design Capstone</p>
-        <h1>Earicular Reconstruction for Patients with Auricular Defects</h1>
+    <div class="product-grid">
+
+      <!-- Clinical Need Card -->
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🩺</div>
+        <h3>Clinical Need</h3>
         <p>
-          A presentation hub for our research, needs analysis, market plan, team roles,
-          and pitch for a scalable auricular reconstruction solution.
+          <strong>Microtia</strong> is a congenital condition in which the outer ear is underdeveloped or absent
+          due to abnormal fetal ear formation.
         </p>
-        <a href="#product" class="btn primary">Explore the project</a>
+        <p>
+          Reconstructive surgery is typically delayed until later childhood or early adolescence — the point at
+          which rib cartilage is fully developed and large enough to harvest.
+        </p>
+        <div class="stat-row">
+          <div class="stat"><strong>1–10</strong> per 10,000 births</div>
+          <div class="stat">Higher rates in Hispanic, Indigenous, Asian &amp; Pacific Islander populations</div>
+        </div>
+      </article>
+
+      <!-- Extearna Card -->
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🧬</div>
+        <h3>Extearna<sup>®</sup></h3>
+        <p>
+          Cartilage allografts are increasingly used in reconstructive surgery with strong clinical outcomes.
+        </p>
+        <p>
+          <strong>Extearna<sup>®</sup></strong> is a minimally processed costal cartilage allograft sourced from
+          pediatric and young adult donors — promising material for auricular reconstruction.
+        </p>
+        <a class="btn btn-outline"
+           href="https://www.mtfbiologics.org/our-products/detail/extearna-costal-cartilage-allograft"
+           target="_blank" rel="noopener noreferrer">
+          Visit MTF Biologics →
+        </a>
+      </article>
+
+      <!-- Our Solution Card -->
+      <article class="card reveal">
+        <div class="card-icon" aria-hidden="true">🦻</div>
+        <h3>Our Solution</h3>
+        <p>
+          Our goal is to develop <strong>3D bioprinted auricular constructs using Extearna<sup>®</sup></strong>
+          that match the biomechanical, biochemical, and clinical performance of autologous costal cartilage.
+        </p>
+        <p>
+          The result: fewer surgeries, reduced operative time, and a smoother experience for pediatric patients.
+        </p>
+      </article>
+    </div>
+
+    <!-- Featured Extearna media block -->
+    <div class="extearna-block reveal" style="margin-top:3rem;">
+      <div class="extearna-img">
+        <!-- REPLACE: swap src with actual photo path -->
+        <img src="website content/extearna.jpg" alt="Extearna costal cartilage allograft" />
+      </div>
+      <div>
+        <span class="tag">Featured Material</span>
+        <h3>Why Extearna<sup>®</sup>?</h3>
+        <p>
+          Costal cartilage allografts from young donors retain native ECM cues that support remodeling
+          and integration. Pairing Extearna<sup>®</sup> with bioprinting lets us deliver patient-specific
+          ear geometry without the morbidity of harvesting a child's own rib.
+        </p>
       </div>
     </div>
-  </header>
 
-  <main>
-    <section class="section" id="product">
-      <div class="container">
-        <h2>Product Explanation</h2>
-        <p>
-          Earicular is a senior design capstone website that showcases our research and design work
-          on auricular reconstruction. The project combines biomaterials, 3D modeling, and clinical
-          planning to create a more accessible pathway for patients with microtia, traumatic ear loss,
-          and congenital deformities.
-        </p>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Research-backed design</h3>
-            <p>
-              We synthesize published tissue engineering strategies with a patient-centered design
-              workflow to make auricular reconstruction safer and more predictable.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Interactive presentation</h3>
-            <p>
-              This website organizes our product story, needs statement, competitor analysis,
-              market strategy, team contributions, and pitch in one easy-to-navigate experience.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Capstone deliverables</h3>
-            <p>
-              Our site is built with HTML, CSS, and JavaScript and is designed for project grading,
-              stakeholder review, and team presentation.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="needs">
-      <div class="container">
-        <h2>Needs Statement</h2>
-        <p>
-          Individuals with ear deformities require reconstructive solutions that are affordable,
-          cosmetically satisfactory, and clinically repeatable. Current options are either highly
-          invasive, difficult to scale, or rely on custom surgical expertise that is not widely available.
-        </p>
-        <ul class="list">
-          <li>
-            <strong>Patient need:</strong> a practical reconstructive pathway for microtia and traumatic ear loss.
-          </li>
-          <li>
-            <strong>Clinical need:</strong> a method that reduces surgeon variability and improves outcomes.
-          </li>
-          <li>
-            <strong>Market need:</strong> a solution that fits into healthcare workflows and can be adopted by clinics.
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="competition">
-      <div class="container">
-        <h2>Competitor Analysis</h2>
-        <p>
-          We compare existing auricular reconstruction approaches, highlighting the strengths and gaps in current solutions.
-        </p>
-        <div class="grid grid-3">
-          <article class="card">
-            <h3>Autologous Reconstruction</h3>
-            <p>
-              Uses rib cartilage grafts and requires multiple surgeries. It is durable but highly invasive and surgeon-dependent.
-            </p>
-          </article>
-          <article class="card">
-            <h3>Silicone Prosthetics</h3>
-            <p>
-              Provides good aesthetics, but the prosthesis must be replaced periodically and can be uncomfortable for the patient.
-            </p>
-          </article>
-          <article class="card">
-            <h3>3D Bioprinting & Scaffolds</h3>
-            <p>
-              Emerging technologies promise customization, but they are not yet widely available and face regulatory hurdles.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="strategy">
-      <div class="container">
-        <h2>Market Strategy</h2>
-        <p>
-          Our strategy emphasizes partnerships, clinical validation, and clear communication to key stakeholders.
-        </p>
-        <ol class="strategy-list">
-          <li>
-            <strong>Clinical partners:</strong> collaborate with reconstructive surgeons and craniofacial clinics.
-          </li>
-          <li>
-            <strong>Academic adoption:</strong> share findings and workflows with biomedical engineering programs.
-          </li>
-          <li>
-            <strong>Patient outreach:</strong> present the benefits of our approach to advocacy groups and families.
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="team">
-      <div class="container">
-        <h2>Team Info</h2>
-        <p>
-          Our interdisciplinary capstone team brings together engineering, biology, and communication skills to develop a strong product story.
-        </p>
-        <div class="grid grid-3">
-          <article class="team-card">
-            <h3>Team Member 1</h3>
-            <p>Project lead, research synthesis, and product strategy.</p>
-          </article>
-          <article class="team-card">
-            <h3>Team Member 2</h3>
-            <p>Technical development, website design, and presentation support.</p>
-          </article>
-          <article class="team-card">
-            <h3>Team Member 3</h3>
-            <p>Clinical research, competitor analysis, and stakeholder communication.</p>
-          </article>
-        </div>
-        <p class="note">
-          Replace the placeholder names and roles above with your actual team members and responsibilities.
-        </p>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="presentation">
-      <div class="container">
-        <h2>Presentation</h2>
-        <p>
-          This section is reserved for the project presentation and supporting visuals.
-          Add your slide deck, diagrams, or video speaker notes here.
-        </p>
-        <div class="presentation-grid">
-          <div class="presentation-card">
-            <h3>Slide Deck</h3>
-            <p>
-              Upload your final presentation file or replace this content with a link to the live slide deck.
-            </p>
-            <a href="#" class="btn secondary">Add slides</a>
-          </div>
-          <div class="presentation-card">
-            <h3>Summary</h3>
-            <p>
-              Summarize your key results, design process, and takeaways in a clear, professional format.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="pitch">
-      <div class="container">
-        <h2>3-Minute Pitch</h2>
-        <p>
-          The 3-minute pitch communicates the problem, the solution, the impact, and why our team is positioned to deliver it.
-        </p>
-        <div class="pitch-box">
-          <h3>Pitch structure</h3>
-          <ul class="list">
-            <li><strong>Problem:</strong> Many patients lack access to consistent, high-quality auricular reconstruction.</li>
-            <li><strong>Solution:</strong> A structured workflow that blends engineering design, patient needs, and market readiness.</li>
-            <li><strong>Impact:</strong> Better outcomes for patients, clearer adoption pathways for clinics, and a more scalable reconstruction approach.</li>
-            <li><strong>Why us:</strong> Our team integrates biomedical insight, technical research, and stakeholder communication.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <p>Built with HTML, CSS, and JavaScript for BME 180C Senior Design Capstone.</p>
-      <p>Replace the placeholder content with your final project details before submission.</p>
+    <!-- Solution callout -->
+    <div class="solution-callout reveal">
+      <h3>Surgery, sooner.</h3>
+      <p>
+        By eliminating the wait for a child's rib to mature, we can shift reconstruction toward the years
+        when it matters most — before peers, photographs, and self-image.
+      </p>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="script.js"></script>
+<!-- =========================================================
+     4. RESEARCH
+     ========================================================= -->
+<section id="research">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Our Research</span>
+      <h2>Bioink, biology, and timing</h2>
+      <p>Four pillars of research drive Earicular's approach to a softer, earlier reconstruction.</p>
+    </div>
+
+    <!-- GelMA -->
+    <div class="research-row reveal">
+      <div class="research-text">
+        <span class="tag">Bioink Component</span>
+        <h3>GelMA</h3>
+        <p>
+          A photocrosslinkable hydrogel that's biocompatible and mechanically tunable — built to support
+          cell adhesion. Derived from collagen-based gelatin, GelMA breaks down into harmless amino acids
+          as native tissue takes over.
+        </p>
+      </div>
+      <div class="research-visual" aria-hidden="true">
+        <div class="research-icon">💧</div>
+      </div>
+    </div>
+
+    <!-- dECM -->
+    <div class="research-row flip reveal">
+      <div class="research-text">
+        <span class="tag">Composite Bioink</span>
+        <h3>dECM Composite Bioink</h3>
+        <p>
+          We incorporate decellularized costal cartilage ECM particles into the GelMA matrix. This composite
+          bioink carries the biochemical cues of native cartilage, then gets bioprinted into auricular constructs.
+        </p>
+      </div>
+      <div class="research-visual" aria-hidden="true">
+        <div class="research-icon">🧫</div>
+      </div>
+    </div>
+
+    <!-- Standard surgery problem -->
+    <div class="research-row reveal">
+      <div class="research-text">
+        <span class="tag">The Problem</span>
+        <h3>The Standard Surgery</h3>
+        <p>
+          Conventional autologous reconstruction requires harvesting rib cartilage. That means surgeons must
+          wait until ages <strong>6–10</strong> for full rib development — leaving children to grow up
+          without an ear during the most socially formative years.
+        </p>
+      </div>
+      <div class="research-visual" aria-hidden="true">
+        <div class="research-icon">⏳</div>
+      </div>
+    </div>
+
+    <!-- Our approach -->
+    <div class="research-row flip reveal">
+      <div class="research-text">
+        <span class="tag">The Earicular Approach</span>
+        <h3>Earlier surgery, simpler workflow</h3>
+        <p>
+          With our bioprinted construct, surgery can happen <strong>before</strong> full cartilage development.
+          We size constructs to a near-adult shape using established growth proportions, then implant them early.
+        </p>
+        <p>
+          As the child grows, GelMA disintegrates and leaves behind cartilage similar to an autologous implant —
+          and surgeons no longer need to suture an ear pre-operation.
+        </p>
+      </div>
+      <div class="research-visual" aria-hidden="true">
+        <div class="research-icon">🖨️</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     5. COMPETITOR ANALYSIS
+     ========================================================= -->
+<section id="competitors" class="alt-bg">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Comparative Analysis</span>
+      <h2>How Extearna<sup>®</sup> stacks up</h2>
+      <p>Hover any row or column to focus the comparison.</p>
+    </div>
+
+    <div class="table-wrap reveal">
+      <table class="compare" id="compareTable">
+        <thead>
+          <tr>
+            <th data-col="0">Feature</th>
+            <th data-col="1">MEDPOR Synthetic Graft</th>
+            <th data-col="2">Autologous Costal Cartilage</th>
+            <th data-col="3">Extearna<sup>®</sup></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Low risk of complications (infection, extrusion, rejection, fracture)</td>
+            <td><span class="badge mm">--</span> Risks foreign body response</td>
+            <td><span class="badge mm">--</span> Can lead to chest wall deformities</td>
+            <td><span class="badge pp">++</span> No foreign body response</td>
+          </tr>
+          <tr>
+            <td>Low risk of chest wall deformity</td>
+            <td><span class="badge pp">++</span> No rib harvest</td>
+            <td><span class="badge mm">--</span> Requires rib harvest from patient</td>
+            <td><span class="badge pp">++</span> No rib harvest</td>
+          </tr>
+          <tr>
+            <td>Minimal pain and scarring</td>
+            <td><span class="badge p">+</span> No separate donor site</td>
+            <td><span class="badge mm">--</span> Muscle and cartilage operation</td>
+            <td><span class="badge p">+</span> No separate donor site</td>
+          </tr>
+          <tr>
+            <td>Less surgically demanding</td>
+            <td><span class="badge p">+</span> Requires TPF flap</td>
+            <td><span class="badge mm">--</span> Requires two separate procedures</td>
+            <td><span class="badge p">+</span> Requires TPF and framework</td>
+          </tr>
+          <tr>
+            <td>Short recovery time</td>
+            <td><span class="badge p">+</span> Local healing</td>
+            <td><span class="badge mm">--</span> Long monitoring period</td>
+            <td><span class="badge p">+</span> Local healing</td>
+          </tr>
+          <tr>
+            <td>Reconstruction can be performed at an earlier age</td>
+            <td><span class="badge pp">++</span> No donor needed</td>
+            <td><span class="badge mm">--</span> Sufficient cartilage at age 9–10</td>
+            <td><span class="badge pp">++</span> Can implant as early as three years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     6. MARKET STRATEGY (PLACEHOLDER)
+     ========================================================= -->
+<section id="market">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Market Strategy</span>
+      <h2>In progress</h2>
+    </div>
+    <div class="market-card reveal">
+      <div class="market-icon" aria-hidden="true">📊</div>
+      <h3>Market analysis coming soon</h3>
+      <p>Our team is finalizing the competitive landscape, payer pathways, and adoption strategy. Check back for updates.</p>
+      <div class="progress-bar" aria-hidden="true"><span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     7. MEET THE TEAM
+     ========================================================= -->
+<section id="team" class="alt-bg">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Meet the Team</span>
+      <h2>The people behind Earicular</h2>
+      <p>A UC Irvine BME senior design team blending research, clinical insight, and engineering execution.</p>
+    </div>
+
+    <div class="team-grid">
+
+      <!-- Lilian Doan -->
+      <article class="team-card reveal">
+        <!-- REPLACE: swap src with actual photo path -->
+        <div class="avatar"><span>LD</span><!-- <img src="" alt="Lilian Doan" /> --></div>
+        <h3>Lilian Doan</h3>
+        <p class="role">Team Lead, Research &amp; Testing</p>
+        <p class="degree">B.S. BME</p>
+        <a class="email" href="mailto:liliand2@uci.edu">liliand2@uci.edu</a>
+        <div class="facts">
+          <span>Plays guitar</span>
+          <span>Favorite city: Carmel-by-the-Sea, CA</span>
+        </div>
+      </article>
+
+      <!-- Houston Nguyen -->
+      <article class="team-card reveal">
+        <!-- REPLACE: swap src with actual photo path -->
+        <div class="avatar"><span>HN</span><!-- <img src="" alt="Houston Nguyen" /> --></div>
+        <h3>Houston Nguyen</h3>
+        <p class="role">Research &amp; Testing</p>
+        <p class="degree">B.S. BME</p>
+        <a class="email" href="mailto:houstotn@uci.edu">houstotn@uci.edu</a>
+        <div class="facts">
+          <span>Self-taught pianist</span>
+          <span>Master rank in League of Legends</span>
+        </div>
+      </article>
+
+      <!-- Seetah Mohammed S Abanumay -->
+      <article class="team-card reveal">
+        <!-- REPLACE: swap src with actual photo path -->
+        <div class="avatar"><span>SA</span><!-- <img src="" alt="Seetah Mohammed S Abanumay" /> --></div>
+        <h3>Seetah Mohammed S Abanumay</h3>
+        <p class="role">Clinical Research</p>
+        <p class="degree">B.S. BME</p>
+        <a class="email" href="mailto:sabanuma@uci.edu">sabanuma@uci.edu</a>
+        <div class="facts">
+          <span>Shoots &amp; develops 35mm film</span>
+          <span>500+ films on Letterboxd</span>
+        </div>
+      </article>
+
+      <!-- James Ciro Brinsko -->
+      <article class="team-card reveal">
+        <!-- REPLACE: swap src with actual photo path -->
+        <div class="avatar"><span>JB</span><!-- <img src="" alt="James Ciro Brinsko" /> --></div>
+        <h3>James Ciro Brinsko</h3>
+        <p class="role">Market Research &amp; Communication</p>
+        <p class="degree">B.S. BME</p>
+        <a class="email" href="mailto:jbrinsko@uci.edu">jbrinsko@uci.edu</a>
+        <div class="facts">
+          <span>Rebuilds Mazda rotary engines</span>
+          <span>Retro hi-fi audio enthusiast</span>
+        </div>
+      </article>
+
+      <!-- Santino Faccio -->
+      <article class="team-card reveal">
+        <!-- REPLACE: swap src with actual photo path -->
+        <div class="avatar"><span>SF</span><!-- <img src="" alt="Santino Faccio" /> --></div>
+        <h3>Santino Faccio</h3>
+        <p class="role">Clinical Research</p>
+        <p class="degree">B.S. BME</p>
+        <a class="email" href="mailto:sfaccio@uci.edu">sfaccio@uci.edu</a>
+        <div class="facts">
+          <span>Fluent in English &amp; Mandarin</span>
+          <span>Snowboards at Mammoth Lakes every winter</span>
+        </div>
+      </article>
+
+      <!-- Jovan Ng -->
+      <article class="team-card reveal">
+        <!-- REPLACE: swap src with actual photo path -->
+        <div class="avatar"><span>JN</span><!-- <img src="" alt="Jovan Ng" /> --></div>
+        <h3>Jovan Ng</h3>
+        <p class="role">Data Analyst</p>
+        <p class="degree">B.S. BME &amp; B.S. CS</p>
+        <a class="email" href="mailto:jovann@uci.edu">jovann@uci.edu</a>
+        <div class="facts">
+          <span>Traveled 4 continents, 15 countries, 30 states</span>
+          <span>Favorite instrument: piano</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========================================================
+     8. CONTACT
+     ========================================================= -->
+<section id="contact">
+  <div class="container contact-wrap reveal">
+    <span class="eyebrow">Contact</span>
+    <h2>Get in Touch</h2>
+    <p>Interested in our research or want to collaborate? Reach out to our team.</p>
+    <a href="mailto:liliand2@uci.edu" class="btn btn-primary mailto-btn">
+      ✉ liliand2@uci.edu
+    </a>
+
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! This is a placeholder form.');">
+      <div class="field">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" type="text" placeholder="Your name" />
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" type="email" placeholder="you@example.com" />
+      </div>
+      <div class="field">
+        <label for="cf-msg">Message</label>
+        <textarea id="cf-msg" placeholder="How can we help?"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </div>
+</section>
+
+<!-- =========================================================
+     9. FOOTER
+     ========================================================= -->
+<footer>
+  <div class="container footer-grid">
+    <p class="footer-copy">© 2025 Earicular — UC Irvine BME Senior Design</p>
+    <ul class="footer-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#competitors">Competitors</a></li>
+      <li><a href="#market">Market</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  /* =========================================================
+     NAVBAR — sticky shadow on scroll + mobile toggle
+     ========================================================= */
+  const navbar = document.getElementById('navbar');
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  // Close mobile menu when a link is clicked
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  /* =========================================================
+     FADE-IN-ON-SCROLL via IntersectionObserver
+     ========================================================= */
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+
+  /* =========================================================
+     COMPETITOR TABLE — column-hover highlighting
+     ========================================================= */
+  const table = document.getElementById('compareTable');
+  if (table) {
+    const ths = table.querySelectorAll('thead th');
+    ths.forEach(th => {
+      const idx = parseInt(th.dataset.col, 10);
+      const cells = table.querySelectorAll(
+        `thead th:nth-child(${idx + 1}), tbody td:nth-child(${idx + 1})`
+      );
+      th.addEventListener('mouseenter', () => cells.forEach(c => c.classList.add('col-hl')));
+      th.addEventListener('mouseleave', () => cells.forEach(c => c.classList.remove('col-hl')));
+    });
+  }
+</script>
+
 </body>
 </html>
