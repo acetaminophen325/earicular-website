@@ -3,18 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Earicular — Restoring Ears. Restoring Childhoods.</title>
+  <title>Earicular | Restoring Ears. Restoring Childhoods.</title>
   <meta name="description" content="Earicular is a UC Irvine BME senior design project developing 3D bioprinted auricular constructs for pediatric ear reconstruction." />
-
-  <!-- Google Fonts: Inter for body, Playfair Display for headings -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
-
   <style>
-    /* =========================================================
-       DESIGN TOKENS
-       ========================================================= */
+    /* Design tokens */
     :root {
       --cream:        #FBF7F1;
       --cream-2:      #F5EFE6;
@@ -23,7 +18,6 @@
       --teal-soft:    #DCF1EE;
       --coral:        #F0857A;
       --coral-soft:   #FBE3DF;
-      --sage:         #A6CFA1;
       --sage-soft:    #E5F1E2;
       --slate:        #2B3340;
       --slate-2:      #4F5A6B;
@@ -38,9 +32,7 @@
       --maxw:         1180px;
     }
 
-    /* =========================================================
-       RESET / BASE
-       ========================================================= */
+    /* Base */
     *, *::before, *::after { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
     body {
@@ -111,9 +103,7 @@
     }
     .btn-outline:hover { background: var(--teal-soft); transform: translateY(-2px); }
 
-    /* =========================================================
-       NAVBAR
-       ========================================================= */
+    /* Navbar */
     .navbar {
       position: sticky;
       top: 0;
@@ -135,29 +125,14 @@
       height: 72px;
     }
     .brand {
-      font-family: 'Inter', sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: 0.18em;
-      color: var(--teal-deep);
       display: flex;
       align-items: center;
-      gap: .6rem;
     }
-    .brand-mark {
-      width: 28px; height: 28px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--teal), var(--teal-deep));
-      display: inline-block;
-      position: relative;
-    }
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border: 2.5px solid #fff;
-      border-radius: 50% 50% 50% 30%;
-      transform: rotate(-15deg);
+    .brand-logo {
+      height: 44px;
+      width: auto;
+      display: block;
+      max-width: 200px;
     }
     .nav-links {
       display: flex;
@@ -184,7 +159,6 @@
     }
     .nav-links a:hover { color: var(--teal-deep); }
     .nav-links a:hover::after { transform: scaleX(1); }
-
     .nav-toggle {
       display: none;
       background: none;
@@ -205,9 +179,7 @@
     .nav-toggle.open span:nth-child(2) { opacity: 0; }
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* =========================================================
-       HERO
-       ========================================================= */
+    /* Hero */
     .hero {
       position: relative;
       min-height: calc(100vh - 72px);
@@ -263,37 +235,23 @@
       filter: drop-shadow(0 18px 30px rgba(47, 140, 131, 0.18));
     }
 
-    /* =========================================================
-       SECTIONS
-       ========================================================= */
-    section {
-      padding: 6rem 0;
-      position: relative;
-    }
+    /* Sections */
+    section { padding: 6rem 0; position: relative; }
     .section-head {
       text-align: center;
       max-width: 720px;
       margin: 0 auto 3.5rem;
     }
-    .section-head p {
-      font-size: 1.05rem;
-    }
+    .section-head p { font-size: 1.05rem; }
     .alt-bg { background: var(--cream-2); }
-
-    /* Reveal-on-scroll */
     .reveal {
       opacity: 0;
       transform: translateY(24px);
       transition: opacity .8s ease, transform .8s ease;
     }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    /* =========================================================
-       PRODUCT SECTION
-       ========================================================= */
+    /* Product */
     .product-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -307,10 +265,7 @@
       border: 1px solid var(--line);
       transition: transform .3s ease, box-shadow .3s ease;
     }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
     .card-icon {
       width: 52px; height: 52px;
       border-radius: 14px;
@@ -320,15 +275,8 @@
       margin-bottom: 1rem;
       font-size: 1.4rem;
     }
-    .card h3 {
-      margin-bottom: .6rem;
-    }
-    .stat-row {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
+    .card h3 { margin-bottom: .6rem; }
+    .stat-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
     .stat {
       background: var(--cream-2);
       padding: 10px 14px;
@@ -337,7 +285,6 @@
       color: var(--slate-2);
     }
     .stat strong { color: var(--teal-deep); }
-
     .extearna-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -356,10 +303,7 @@
       aspect-ratio: 4/3;
       background: var(--cream-2);
     }
-    .extearna-img img {
-      width: 100%; height: 100%; object-fit: cover;
-    }
-
+    .extearna-img img { width: 100%; height: 100%; object-fit: cover; }
     .solution-callout {
       margin-top: 2.5rem;
       padding: 2.5rem;
@@ -368,13 +312,9 @@
       border: 1px solid var(--teal-soft);
       text-align: center;
     }
-    .solution-callout h3 {
-      color: var(--teal-deep);
-    }
+    .solution-callout h3 { color: var(--teal-deep); }
 
-    /* =========================================================
-       RESEARCH SECTION
-       ========================================================= */
+    /* Research */
     .research-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -383,9 +323,8 @@
       margin-bottom: 4.5rem;
     }
     .research-row:last-child { margin-bottom: 0; }
-    .research-row.flip .research-text { order: 2; }
+    .research-row.flip .research-text  { order: 2; }
     .research-row.flip .research-visual { order: 1; }
-
     .research-visual {
       aspect-ratio: 1;
       max-width: 360px;
@@ -410,7 +349,14 @@
       font-size: 5rem;
       filter: drop-shadow(0 6px 10px rgba(47,140,131,0.2));
     }
-
+    .research-visual.research-photo { background: var(--cream-2); padding: 0; }
+    .research-visual.research-photo::before { display: none; }
+    .research-visual.research-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      display: block;
+    }
     .tag {
       display: inline-block;
       font-size: .75rem;
@@ -424,9 +370,7 @@
       margin-bottom: 1rem;
     }
 
-    /* =========================================================
-       COMPETITOR TABLE
-       ========================================================= */
+    /* Competitor table */
     .table-wrap {
       overflow-x: auto;
       background: #fff;
@@ -467,17 +411,9 @@
       color: var(--slate);
       background: var(--cream);
     }
-
-    /* Row hover */
-    table.compare tbody tr:hover td {
-      background: var(--teal-soft) !important;
-    }
-    /* Column hover (driven by JS adding .col-hl) */
+    table.compare tbody tr:hover td { background: var(--teal-soft) !important; }
     table.compare td.col-hl,
-    table.compare th.col-hl {
-      background: rgba(74, 188, 176, 0.18) !important;
-    }
-
+    table.compare th.col-hl { background: rgba(74, 188, 176, 0.18) !important; }
     .badge {
       display: inline-block;
       font-weight: 700;
@@ -491,226 +427,7 @@
     .badge.p  { background: var(--sage-soft); color: #4a7a44; }
     .badge.mm { background: var(--coral-soft); color: #b04a40; }
 
-    /* =========================================================
-       MARKET STRATEGY (PLACEHOLDER)
-       ========================================================= */
-    .market-card {
-      background: #fff;
-      border-radius: var(--radius-lg);
-      padding: 4rem 2rem;
-      text-align: center;
-      box-shadow: var(--shadow-md);
-      border: 1px dashed var(--line);
-      max-width: 720px;
-      margin: 0 auto;
-    }
-    .market-icon {
-      width: 84px; height: 84px;
-      border-radius: 50%;
-      background: var(--teal-soft);
-      color: var(--teal-deep);
-      display: grid; place-items: center;
-      margin: 0 auto 1.4rem;
-      font-size: 2rem;
-    }
-    .market-card .progress-bar {
-      max-width: 280px;
-      height: 6px;
-      background: var(--cream-2);
-      border-radius: 999px;
-      margin: 1.5rem auto 0;
-      overflow: hidden;
-    }
-    .market-card .progress-bar span {
-      display: block;
-      width: 35%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--teal), var(--teal-deep));
-      border-radius: 999px;
-      animation: progressPulse 2.4s ease-in-out infinite;
-    }
-    @keyframes progressPulse {
-      0%, 100% { width: 30%; }
-      50%      { width: 60%; }
-    }
-
-    /* =========================================================
-       TEAM
-       ========================================================= */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-    }
-    .team-card {
-      background: #fff;
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--line);
-      transition: transform .3s ease, box-shadow .3s ease;
-      text-align: center;
-    }
-    .team-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-lg);
-    }
-    .avatar {
-      width: 140px; height: 140px;
-      margin: 0 auto 1.2rem;
-      border-radius: var(--radius-md);
-      border: 3px solid var(--teal);
-      background: linear-gradient(135deg, var(--teal-soft), var(--cream-2));
-      display: grid;
-      place-items: center;
-      font-family: 'Playfair Display', serif;
-      font-size: 2.6rem;
-      font-weight: 600;
-      color: var(--teal-deep);
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(74,188,176,0.18);
-    }
-    .avatar img { width: 100%; height: 100%; object-fit: cover; }
-    .team-card h3 { margin-bottom: .15rem; }
-    .team-card .role {
-      color: var(--teal-deep);
-      font-size: .9rem;
-      font-weight: 600;
-      margin-bottom: .35rem;
-    }
-    .team-card .degree {
-      color: var(--slate-3);
-      font-size: .85rem;
-      margin-bottom: .75rem;
-    }
-    .team-card .email {
-      display: inline-block;
-      font-size: .9rem;
-      margin-bottom: 1rem;
-      word-break: break-all;
-    }
-    .team-card .facts {
-      border-top: 1px solid var(--line);
-      padding-top: 1rem;
-      font-style: italic;
-      font-size: .85rem;
-      color: var(--slate-3);
-      line-height: 1.55;
-    }
-    .team-card .facts span { display: block; }
-
-    /* =========================================================
-       CONTACT
-       ========================================================= */
-    .contact-wrap {
-      max-width: 620px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .contact-form {
-      margin-top: 2.5rem;
-      background: #fff;
-      padding: 2rem;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-md);
-      border: 1px solid var(--line);
-      text-align: left;
-    }
-    .contact-form .field {
-      margin-bottom: 1rem;
-    }
-    .contact-form label {
-      display: block;
-      font-size: .85rem;
-      font-weight: 600;
-      color: var(--slate-2);
-      margin-bottom: .35rem;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-sm);
-      font-family: inherit;
-      font-size: .95rem;
-      color: var(--slate);
-      background: var(--cream);
-      transition: border-color .2s, background .2s;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus {
-      outline: none;
-      border-color: var(--teal);
-      background: #fff;
-    }
-    .contact-form textarea { resize: vertical; min-height: 120px; }
-    .contact-form .btn { width: 100%; justify-content: center; }
-
-    .mailto-btn {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-    }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
-    footer {
-      background: var(--cream-2);
-      padding: 3rem 0 2rem;
-      border-top: 1px solid var(--line);
-    }
-    .footer-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.25rem;
-      padding: 0; margin: 0;
-    }
-    .footer-links a {
-      color: var(--slate-2);
-      font-size: .9rem;
-    }
-    .footer-copy {
-      font-size: .9rem;
-      color: var(--slate-3);
-      margin: 0;
-    }
-
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
-    /* =========================================================
-       BRAND LOGO (navbar)
-       ========================================================= */
-    .brand-logo {
-      height: 44px;
-      width: auto;
-      display: block;
-      /* Prevents the browser from showing alt-text layout shift */
-      max-width: 200px;
-    }
-
-    /* =========================================================
-       FOOTER LOGO
-       ========================================================= */
-    .footer-logo {
-      height: 32px;
-      width: auto;
-      display: block;
-      opacity: .8;
-    }
-
-    /* =========================================================
-       MARKET SECTION — KPI CARDS
-       ========================================================= */
+    /* Market section */
     .mkt-kpi-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -726,10 +443,7 @@
       border: 1px solid var(--line);
       transition: transform .3s ease, box-shadow .3s ease;
     }
-    .mkt-kpi-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
+    .mkt-kpi-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
     .mkt-kpi-icon { font-size: 1.8rem; margin-bottom: .6rem; }
     .mkt-kpi-value {
       font-family: 'Playfair Display', serif;
@@ -740,11 +454,7 @@
       margin-bottom: .4rem;
     }
     .mkt-kpi-label { font-size: .85rem; color: var(--slate-3); font-weight: 500; }
-
-    /* Market subsection titles */
-    .mkt-subsection {
-      margin-top: 3rem;
-    }
+    .mkt-subsection { margin-top: 3rem; }
     .mkt-subsection-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.5rem;
@@ -754,10 +464,6 @@
       padding-bottom: .75rem;
       border-bottom: 2px solid var(--line);
     }
-
-    /* =========================================================
-       MARKET OVERVIEW TABLE (7 columns, 1 data row)
-       ========================================================= */
     .market-table {
       width: 100%;
       border-collapse: collapse;
@@ -804,10 +510,6 @@
       color: var(--slate);
       margin-bottom: .4rem;
     }
-
-    /* =========================================================
-       STAKEHOLDER ANALYSIS TABLE (9 columns, 4 data rows)
-       ========================================================= */
     .sh-table {
       width: 100%;
       border-collapse: collapse;
@@ -834,13 +536,7 @@
     }
     .sh-table tbody tr:last-child td { border-bottom: none; }
     .sh-table tbody tr:hover td { background: rgba(220, 241, 238, 0.45); }
-    .sh-name {
-      font-weight: 700;
-      color: var(--slate) !important;
-      min-width: 130px;
-    }
-
-    /* Commitment / resistance level badges */
+    .sh-name { font-weight: 700; color: var(--slate) !important; min-width: 130px; }
     .commit-badge {
       display: inline-block;
       font-size: .78rem;
@@ -849,29 +545,113 @@
       border-radius: 999px;
       white-space: nowrap;
     }
-    .commit-badge.high   { background: var(--teal);     color: #fff; }
-    .commit-badge.medium { background: #FFF3C8;         color: #7A5D00; }
+    .commit-badge.high   { background: var(--teal); color: #fff; }
+    .commit-badge.medium { background: #FFF3C8; color: #7A5D00; }
     .commit-badge.low    { background: var(--sage-soft); color: #3D6B39; }
 
-    /* =========================================================
-       RESEARCH — photo variant visual
-       ========================================================= */
-    .research-visual.research-photo {
-      background: var(--cream-2);
-      padding: 0;
+    /* Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
-    .research-visual.research-photo::before { display: none; }
-    .research-visual.research-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .team-card {
+      background: #fff;
       border-radius: var(--radius-lg);
-      display: block;
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--line);
+      transition: transform .3s ease, box-shadow .3s ease;
+      text-align: center;
     }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .avatar {
+      width: 140px; height: 140px;
+      margin: 0 auto 1.2rem;
+      border-radius: var(--radius-md);
+      border: 3px solid var(--teal);
+      background: linear-gradient(135deg, var(--teal-soft), var(--cream-2));
+      display: grid;
+      place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--teal-deep);
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(74,188,176,0.18);
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .team-card h3 { margin-bottom: .15rem; }
+    .team-card .role { color: var(--teal-deep); font-size: .9rem; font-weight: 600; margin-bottom: .35rem; }
+    .team-card .degree { color: var(--slate-3); font-size: .85rem; margin-bottom: .75rem; }
+    .team-card .email { display: inline-block; font-size: .9rem; margin-bottom: 1rem; word-break: break-all; }
+    .team-card .facts {
+      border-top: 1px solid var(--line);
+      padding-top: 1rem;
+      font-style: italic;
+      font-size: .85rem;
+      color: var(--slate-3);
+      line-height: 1.55;
+    }
+    .team-card .facts span { display: block; }
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
+    /* Contact */
+    .contact-wrap { max-width: 620px; margin: 0 auto; text-align: center; }
+    .contact-form {
+      margin-top: 2.5rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+    .contact-form .field { margin-bottom: 1rem; }
+    .contact-form label { display: block; font-size: .85rem; font-weight: 600; color: var(--slate-2); margin-bottom: .35rem; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: .95rem;
+      color: var(--slate);
+      background: var(--cream);
+      transition: border-color .2s, background .2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { outline: none; border-color: var(--teal); background: #fff; }
+    .contact-form textarea { resize: vertical; min-height: 120px; }
+    .contact-form .btn { width: 100%; justify-content: center; }
+    .mailto-btn { margin-top: 1.5rem; font-size: 1rem; }
+
+    /* Footer */
+    footer {
+      background: var(--cream-2);
+      padding: 3rem 0 2rem;
+      border-top: 1px solid var(--line);
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-left { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .footer-logo { height: 32px; width: auto; display: block; opacity: .8; }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      padding: 0; margin: 0;
+    }
+    .footer-links a { color: var(--slate-2); font-size: .9rem; }
+    .footer-copy { font-size: .9rem; color: var(--slate-3); margin: 0; }
+
+    /* Responsive */
     @media (max-width: 960px) {
       .hero-grid,
       .product-grid,
@@ -900,27 +680,20 @@
         pointer-events: none;
         transition: transform .25s ease, opacity .25s;
       }
-      .nav-links.open {
-        transform: translateY(0);
-        opacity: 1;
-        pointer-events: auto;
-      }
+      .nav-links.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
       .nav-toggle { display: block; }
       .team-grid { grid-template-columns: 1fr; }
       h1 { font-size: 2.1rem; }
-      .extearna-block, .market-card { padding: 1.75rem; }
+      .extearna-block { padding: 1.75rem; }
       .mkt-kpi-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- =========================================================
-     1. NAVBAR
-     ========================================================= -->
+<!-- Navbar -->
 <header class="navbar" id="navbar">
   <div class="container nav-inner">
-    <!-- Logo image — sourced from website content/earicular-logo.png -->
     <a href="#home" class="brand">
       <img src="website content/earicular-logo.png" alt="Earicular" class="brand-logo" />
     </a>
@@ -941,9 +714,7 @@
   </div>
 </header>
 
-<!-- =========================================================
-     2. HERO / HOME
-     ========================================================= -->
+<!-- Hero -->
 <section id="home" class="hero">
   <div class="container hero-grid">
     <div class="hero-copy reveal">
@@ -962,7 +733,6 @@
     </div>
     <div class="hero-visual reveal">
       <div class="hero-blob" aria-hidden="true"></div>
-      <!-- Decorative ear/wave SVG -->
       <svg class="hero-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
           <linearGradient id="earGrad" x1="0" y1="0" x2="1" y2="1">
@@ -974,12 +744,9 @@
             <stop offset="100%" stop-color="#4ABCB0" stop-opacity="0.5"/>
           </linearGradient>
         </defs>
-        <!-- Soft background circle -->
         <circle cx="200" cy="200" r="170" fill="#FBF7F1"/>
-        <!-- Concentric soundwaves -->
         <path d="M 80 200 Q 110 150, 160 200 T 240 200" stroke="url(#waveGrad)" stroke-width="3" fill="none" opacity="0.6"/>
         <path d="M 60 230 Q 100 170, 170 230 T 280 230" stroke="url(#waveGrad)" stroke-width="3" fill="none" opacity="0.45"/>
-        <!-- Stylized ear shape -->
         <path d="M 250 110
                  C 310 110, 340 170, 330 230
                  C 325 270, 300 300, 270 305
@@ -991,10 +758,8 @@
                  C 200 245, 195 225, 200 200
                  C 205 165, 215 130, 250 110 Z"
               fill="url(#earGrad)" opacity="0.92"/>
-        <!-- Inner ear curl -->
         <path d="M 255 175 C 275 180, 280 205, 265 220 C 255 230, 245 225, 250 210"
               stroke="#FBF7F1" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- Decorative dots -->
         <circle cx="120" cy="130" r="6" fill="#F0857A" opacity="0.6"/>
         <circle cx="100" cy="290" r="4" fill="#4ABCB0" opacity="0.7"/>
         <circle cx="320" cy="320" r="5" fill="#F0857A" opacity="0.5"/>
@@ -1003,9 +768,7 @@
   </div>
 </section>
 
-<!-- =========================================================
-     3. PRODUCT EXPLANATION
-     ========================================================= -->
+<!-- Product -->
 <section id="product" class="alt-bg">
   <div class="container">
     <div class="section-head reveal">
@@ -1015,8 +778,7 @@
     </div>
 
     <div class="product-grid">
-
-      <!-- Clinical Need Card -->
+      <!-- Clinical Need -->
       <article class="card reveal">
         <div class="card-icon" aria-hidden="true">🩺</div>
         <h3>Clinical Need</h3>
@@ -1025,16 +787,16 @@
           due to abnormal fetal ear formation.
         </p>
         <p>
-          Reconstructive surgery is typically delayed until later childhood or early adolescence — the point at
-          which rib cartilage is fully developed and large enough to harvest.
+          Reconstructive surgery is typically delayed until later childhood or early adolescence, when rib
+          cartilage is fully developed and large enough to harvest.
         </p>
         <div class="stat-row">
-          <div class="stat"><strong>1–10</strong> per 10,000 births</div>
+          <div class="stat"><strong>1-10</strong> per 10,000 births</div>
           <div class="stat">Higher rates in Hispanic, Indigenous, Asian &amp; Pacific Islander populations</div>
         </div>
       </article>
 
-      <!-- Extearna Card -->
+      <!-- Extearna -->
       <article class="card reveal">
         <div class="card-icon" aria-hidden="true">🧬</div>
         <h3>Extearna<sup>®</sup></h3>
@@ -1043,16 +805,16 @@
         </p>
         <p>
           <strong>Extearna<sup>®</sup></strong> is a minimally processed costal cartilage allograft sourced from
-          pediatric and young adult donors — promising material for auricular reconstruction.
+          pediatric and young adult donors, a promising material for auricular reconstruction.
         </p>
         <a class="btn btn-outline"
            href="https://www.mtfbiologics.org/our-products/detail/extearna-costal-cartilage-allograft"
            target="_blank" rel="noopener noreferrer">
-          Visit MTF Biologics →
+          Visit MTF Biologics &rarr;
         </a>
       </article>
 
-      <!-- Our Solution Card -->
+      <!-- Our Solution -->
       <article class="card reveal">
         <div class="card-icon" aria-hidden="true">🦻</div>
         <h3>Our Solution</h3>
@@ -1066,11 +828,9 @@
       </article>
     </div>
 
-    <!-- Featured Extearna media block -->
     <div class="extearna-block reveal" style="margin-top:3rem;">
       <div class="extearna-img">
-        <!-- Extearna product photo — sourced from website-photos/extearna/extearnalarge.JPG -->
-        <img src="website content/website-photos/extearna/extearnalarge.JPG" alt="Extearna costal cartilage allograft — MTF Biologics" />
+        <img src="website content/website-photos/extearna/extearnalarge.JPG" alt="Extearna costal cartilage allograft" />
       </div>
       <div>
         <span class="tag">Featured Material</span>
@@ -1083,20 +843,17 @@
       </div>
     </div>
 
-    <!-- Solution callout -->
     <div class="solution-callout reveal">
       <h3>Surgery, sooner.</h3>
       <p>
         By eliminating the wait for a child's rib to mature, we can shift reconstruction toward the years
-        when it matters most — before peers, photographs, and self-image.
+        when it matters most: before peers, photographs, and self-image.
       </p>
     </div>
   </div>
 </section>
 
-<!-- =========================================================
-     4. RESEARCH
-     ========================================================= -->
+<!-- Research -->
 <section id="research">
   <div class="container">
     <div class="section-head reveal">
@@ -1111,15 +868,14 @@
         <span class="tag">Bioink Component</span>
         <h3>GelMA</h3>
         <p>
-          A photocrosslinkable hydrogel that's biocompatible and mechanically tunable — built to support
+          A photocrosslinkable hydrogel that's biocompatible and mechanically tunable, with support for
           cell adhesion. Derived from collagen-based gelatin, GelMA breaks down into harmless amino acids
           as native tissue takes over.
         </p>
       </div>
-      <!-- Lab photo: mechanical testing of the allograft material -->
       <div class="research-visual research-photo">
-        <img src="website content/website-photos/extearna/extearnamechanicaltesting.JPEG"
-             alt="Mechanical testing of Extearna costal cartilage allograft" />
+        <img src="website content/website-photos/gelma/bioink.gif"
+             alt="Bioink extrusion test" />
       </div>
     </div>
 
@@ -1133,7 +889,6 @@
           bioink carries the biochemical cues of native cartilage, then gets bioprinted into auricular constructs.
         </p>
       </div>
-      <!-- Lab photo: material testing sample -->
       <div class="research-visual research-photo">
         <img src="website content/website-photos/extearna/extearnatesting2.JPG"
              alt="Extearna allograft material testing" />
@@ -1146,12 +901,11 @@
         <span class="tag">The Problem</span>
         <h3>The Standard Surgery</h3>
         <p>
-          Conventional autologous reconstruction requires harvesting rib cartilage. That means surgeons must
-          wait until ages <strong>6–10</strong> for full rib development — leaving children to grow up
+          Conventional autologous reconstruction requires harvesting rib cartilage. Surgeons must
+          wait until ages <strong>6-10</strong> for full rib development, leaving children to grow up
           without an ear during the most socially formative years.
         </p>
       </div>
-      <!-- Lab photo: Extearna costal cartilage allograft (product reference) -->
       <div class="research-visual research-photo">
         <img src="website content/website-photos/extearna/extearnatesting.JPEG"
              alt="Extearna costal cartilage allograft" />
@@ -1168,11 +922,10 @@
           We size constructs to a near-adult shape using established growth proportions, then implant them early.
         </p>
         <p>
-          As the child grows, GelMA disintegrates and leaves behind cartilage similar to an autologous implant —
-          and surgeons no longer need to suture an ear pre-operation.
+          As the child grows, GelMA disintegrates and leaves behind cartilage similar to an autologous implant;
+          surgeons no longer need to suture an ear pre-operation.
         </p>
       </div>
-      <!-- Lab photo: 3D bioprinting G-code setup -->
       <div class="research-visual research-photo">
         <img src="website content/website-photos/printing/gcode.JPG"
              alt="3D bioprinter G-code path planning for auricular construct" />
@@ -1181,17 +934,14 @@
   </div>
 </section>
 
-<!-- =========================================================
-     5. COMPETITOR ANALYSIS
-     ========================================================= -->
+<!-- Competitors -->
 <section id="competitors" class="alt-bg">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Comparative Analysis</span>
       <h2>How Extearna<sup>®</sup> stacks up</h2>
-      <p>Hover any row or column to focus the comparison.</p>
+      <p>Hover any row to highlight it, or hover a column header to compare across all rows.</p>
     </div>
-
     <div class="table-wrap reveal">
       <table class="compare" id="compareTable">
         <thead>
@@ -1236,7 +986,7 @@
           <tr>
             <td>Reconstruction can be performed at an earlier age</td>
             <td><span class="badge pp">++</span> No donor needed</td>
-            <td><span class="badge mm">--</span> Sufficient cartilage at age 9–10</td>
+            <td><span class="badge mm">--</span> Sufficient cartilage at age 9-10</td>
             <td><span class="badge pp">++</span> Can implant as early as three years</td>
           </tr>
         </tbody>
@@ -1245,18 +995,15 @@
   </div>
 </section>
 
-<!-- =========================================================
-     6. MARKET STRATEGY
-     ========================================================= -->
+<!-- Market -->
 <section id="market">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Market Strategy</span>
-      <h2>A growing market, a clear opportunity</h2>
-      <p>The global cartilage repair market is expanding rapidly — and allograft-based solutions are at the forefront of that growth.</p>
+      <h2>Cartilage Repair Market</h2>
+      <p>The global cartilage repair market is expanding rapidly, with allograft-based solutions at the forefront of that growth.</p>
     </div>
 
-    <!-- KPI stat cards -->
     <div class="mkt-kpi-grid reveal">
       <div class="mkt-kpi-card">
         <div class="mkt-kpi-icon">💰</div>
@@ -1271,7 +1018,7 @@
       <div class="mkt-kpi-card">
         <div class="mkt-kpi-icon">🚀</div>
         <div class="mkt-kpi-value">5.1%</div>
-        <div class="mkt-kpi-label">CAGR 2025–2030</div>
+        <div class="mkt-kpi-label">CAGR 2025-2030</div>
       </div>
       <div class="mkt-kpi-card">
         <div class="mkt-kpi-icon">🌎</div>
@@ -1280,7 +1027,6 @@
       </div>
     </div>
 
-    <!-- Market Overview Table -->
     <div class="mkt-subsection reveal">
       <h3 class="mkt-subsection-title">Market Overview</h3>
       <div class="table-wrap">
@@ -1314,7 +1060,7 @@
               </td>
               <td>
                 <strong class="mkt-highlight">5.1% CAGR</strong>
-                <p>(5-year projection, 2025–2030)</p>
+                <p>(5-year projection, 2025-2030)</p>
               </td>
               <td>
                 <ul>
@@ -1327,7 +1073,7 @@
               <td>
                 <p><span class="mkt-competitor-tag">~20.7%</span><br/><strong>Stryker Corporation</strong></p>
                 <p><span class="mkt-competitor-tag">~27.1%</span><br/><strong>Zimmer Biomet</strong></p>
-                <p>Stryker's MEDPOR® offers synthetic (porous polyethylene) ear implants for reconstructive surgery. Available disclosures focus on broader segments; product-category level not disclosed.</p>
+                <p>Stryker's MEDPOR&reg; offers synthetic (porous polyethylene) ear implants for reconstructive surgery. Available disclosures focus on broader segments; product-category level not disclosed.</p>
               </td>
               <td>
                 <p><strong>U.S. Patent No. 7655047</strong><br/><em>Craniofacial Implant</em></p>
@@ -1339,7 +1085,6 @@
       </div>
     </div>
 
-    <!-- Stakeholder Analysis Table -->
     <div class="mkt-subsection reveal">
       <h3 class="mkt-subsection-title">Stakeholder Analysis</h3>
       <div class="table-wrap">
@@ -1358,7 +1103,6 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Row 1: Surgeons -->
             <tr>
               <td class="sh-name">Plastic surgeons / ENT surgeons</td>
               <td><span class="commit-badge medium">Medium</span></td>
@@ -1370,7 +1114,6 @@
               <td>Graft integration surgical procedures, availability of product (cartilage from cadavers), can be harder to use than synthetics; study [1] claims higher aesthetic outcomes with PPE implants</td>
               <td>Provide clinical trial data, conduct demos</td>
             </tr>
-            <!-- Row 2: Hospital Administrators -->
             <tr>
               <td class="sh-name">Hospital administrators</td>
               <td><span class="commit-badge medium">Medium</span></td>
@@ -1382,7 +1125,6 @@
               <td>Budget approval cycles, high costs of allograft</td>
               <td>Cost and budget analyses, data showing success</td>
             </tr>
-            <!-- Row 3: Patients -->
             <tr>
               <td class="sh-name">Patients</td>
               <td><span class="commit-badge medium">Medium</span></td>
@@ -1394,7 +1136,6 @@
               <td>Cost, lack of cadaver donor, less visibility. [2] claims that cost may be higher for FFRG grafts than autologous or IIHC</td>
               <td>Advertising, marketing, educational brochures, outreach with safety and regulatory compliance</td>
             </tr>
-            <!-- Row 4: Advisors -->
             <tr>
               <td class="sh-name">Advisors, Mentors</td>
               <td><span class="commit-badge medium">Medium</span></td>
@@ -1410,13 +1151,10 @@
         </table>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- =========================================================
-     7. MEET THE TEAM
-     ========================================================= -->
+<!-- Team -->
 <section id="team" class="alt-bg">
   <div class="container">
     <div class="section-head reveal">
@@ -1427,10 +1165,11 @@
 
     <div class="team-grid">
 
-      <!-- Lilian Doan -->
       <article class="team-card reveal">
-        <!-- REPLACE: swap src with actual photo path -->
-        <div class="avatar"><span>LD</span><!-- <img src="" alt="Lilian Doan" /> --></div>
+        <div class="avatar">
+          <!-- <img src="" alt="Lilian Doan" /> -->
+          <span>LD</span>
+        </div>
         <h3>Lilian Doan</h3>
         <p class="role">Team Lead, Research &amp; Testing</p>
         <p class="degree">B.S. BME</p>
@@ -1441,10 +1180,11 @@
         </div>
       </article>
 
-      <!-- Houston Nguyen -->
       <article class="team-card reveal">
-        <!-- REPLACE: swap src with actual photo path -->
-        <div class="avatar"><span>HN</span><!-- <img src="" alt="Houston Nguyen" /> --></div>
+        <div class="avatar">
+          <!-- <img src="" alt="Houston Nguyen" /> -->
+          <span>HN</span>
+        </div>
         <h3>Houston Nguyen</h3>
         <p class="role">Research &amp; Testing</p>
         <p class="degree">B.S. BME</p>
@@ -1455,10 +1195,11 @@
         </div>
       </article>
 
-      <!-- Seetah Mohammed S Abanumay -->
       <article class="team-card reveal">
-        <!-- REPLACE: swap src with actual photo path -->
-        <div class="avatar"><span>SA</span><!-- <img src="" alt="Seetah Mohammed S Abanumay" /> --></div>
+        <div class="avatar">
+          <!-- <img src="" alt="Seetah Mohammed S Abanumay" /> -->
+          <span>SA</span>
+        </div>
         <h3>Seetah Mohammed S Abanumay</h3>
         <p class="role">Clinical Research</p>
         <p class="degree">B.S. BME</p>
@@ -1469,10 +1210,11 @@
         </div>
       </article>
 
-      <!-- James Ciro Brinsko -->
       <article class="team-card reveal">
-        <!-- REPLACE: swap src with actual photo path -->
-        <div class="avatar"><span>JB</span><!-- <img src="" alt="James Ciro Brinsko" /> --></div>
+        <div class="avatar">
+          <!-- <img src="" alt="James Ciro Brinsko" /> -->
+          <span>JB</span>
+        </div>
         <h3>James Ciro Brinsko</h3>
         <p class="role">Market Research &amp; Communication</p>
         <p class="degree">B.S. BME</p>
@@ -1483,10 +1225,11 @@
         </div>
       </article>
 
-      <!-- Santino Faccio -->
       <article class="team-card reveal">
-        <!-- REPLACE: swap src with actual photo path -->
-        <div class="avatar"><span>SF</span><!-- <img src="" alt="Santino Faccio" /> --></div>
+        <div class="avatar">
+          <!-- <img src="" alt="Santino Faccio" /> -->
+          <span>SF</span>
+        </div>
         <h3>Santino Faccio</h3>
         <p class="role">Clinical Research</p>
         <p class="degree">B.S. BME</p>
@@ -1497,10 +1240,11 @@
         </div>
       </article>
 
-      <!-- Jovan Ng -->
       <article class="team-card reveal">
-        <!-- REPLACE: swap src with actual photo path -->
-        <div class="avatar"><span>JN</span><!-- <img src="" alt="Jovan Ng" /> --></div>
+        <div class="avatar">
+          <!-- <img src="" alt="Jovan Ng" /> -->
+          <span>JN</span>
+        </div>
         <h3>Jovan Ng</h3>
         <p class="role">Data Analyst</p>
         <p class="degree">B.S. BME &amp; B.S. CS</p>
@@ -1515,19 +1259,16 @@
   </div>
 </section>
 
-<!-- =========================================================
-     8. CONTACT
-     ========================================================= -->
+<!-- Contact -->
 <section id="contact">
   <div class="container contact-wrap reveal">
     <span class="eyebrow">Contact</span>
     <h2>Get in Touch</h2>
     <p>Interested in our research or want to collaborate? Reach out to our team.</p>
     <a href="mailto:liliand2@uci.edu" class="btn btn-primary mailto-btn">
-      ✉ liliand2@uci.edu
+      &#9993; liliand2@uci.edu
     </a>
-
-    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! This is a placeholder form.');">
+    <form class="contact-form" onsubmit="return false;">
       <div class="field">
         <label for="cf-name">Name</label>
         <input id="cf-name" type="text" placeholder="Your name" />
@@ -1545,15 +1286,12 @@
   </div>
 </section>
 
-<!-- =========================================================
-     9. FOOTER
-     ========================================================= -->
+<!-- Footer -->
 <footer>
   <div class="container footer-grid">
-    <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
-      <!-- Logo repeated in footer -->
+    <div class="footer-left">
       <img src="website content/earicular-logo.png" alt="Earicular" class="footer-logo" />
-      <p class="footer-copy" style="margin:0;">© 2025 Earicular — UC Irvine BME Senior Design</p>
+      <p class="footer-copy">© 2025 Earicular | UC Irvine BME Senior Design</p>
     </div>
     <ul class="footer-links">
       <li><a href="#home">Home</a></li>
@@ -1568,12 +1306,10 @@
 </footer>
 
 <script>
-  /* =========================================================
-     NAVBAR — sticky shadow on scroll + mobile toggle
-     ========================================================= */
-  const navbar = document.getElementById('navbar');
+  /* Navbar */
+  const navbar    = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
-  const navLinks = document.getElementById('navLinks');
+  const navLinks  = document.getElementById('navLinks');
 
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 8);
@@ -1585,7 +1321,7 @@
     navToggle.setAttribute('aria-expanded', String(open));
   });
 
-  // Close mobile menu when a link is clicked
+  // Close mobile menu on link click
   navLinks.querySelectorAll('a').forEach(a => {
     a.addEventListener('click', () => {
       navLinks.classList.remove('open');
@@ -1594,9 +1330,7 @@
     });
   });
 
-  /* =========================================================
-     FADE-IN-ON-SCROLL via IntersectionObserver
-     ========================================================= */
+  /* Scroll reveal */
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -1608,14 +1342,11 @@
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   reveals.forEach(el => io.observe(el));
 
-  /* =========================================================
-     COMPETITOR TABLE — column-hover highlighting
-     ========================================================= */
+  /* Table column hover */
   const table = document.getElementById('compareTable');
   if (table) {
-    const ths = table.querySelectorAll('thead th');
-    ths.forEach(th => {
-      const idx = parseInt(th.dataset.col, 10);
+    table.querySelectorAll('thead th').forEach(th => {
+      const idx   = parseInt(th.dataset.col, 10);
       const cells = table.querySelectorAll(
         `thead th:nth-child(${idx + 1}), tbody td:nth-child(${idx + 1})`
       );
