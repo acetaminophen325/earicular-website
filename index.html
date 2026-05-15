@@ -687,6 +687,191 @@
     /* =========================================================
        RESPONSIVE
        ========================================================= */
+    /* =========================================================
+       BRAND LOGO (navbar)
+       ========================================================= */
+    .brand-logo {
+      height: 44px;
+      width: auto;
+      display: block;
+      /* Prevents the browser from showing alt-text layout shift */
+      max-width: 200px;
+    }
+
+    /* =========================================================
+       FOOTER LOGO
+       ========================================================= */
+    .footer-logo {
+      height: 32px;
+      width: auto;
+      display: block;
+      opacity: .8;
+    }
+
+    /* =========================================================
+       MARKET SECTION — KPI CARDS
+       ========================================================= */
+    .mkt-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .mkt-kpi-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--line);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .mkt-kpi-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .mkt-kpi-icon { font-size: 1.8rem; margin-bottom: .6rem; }
+    .mkt-kpi-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--teal-deep);
+      line-height: 1.1;
+      margin-bottom: .4rem;
+    }
+    .mkt-kpi-label { font-size: .85rem; color: var(--slate-3); font-weight: 500; }
+
+    /* Market subsection titles */
+    .mkt-subsection {
+      margin-top: 3rem;
+    }
+    .mkt-subsection-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin: 0 0 1.25rem;
+      padding-bottom: .75rem;
+      border-bottom: 2px solid var(--line);
+    }
+
+    /* =========================================================
+       MARKET OVERVIEW TABLE (7 columns, 1 data row)
+       ========================================================= */
+    .market-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1100px;
+    }
+    .market-table thead th {
+      background: var(--teal-soft);
+      color: var(--teal-deep);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .875rem;
+      padding: 1rem .9rem;
+      text-align: left;
+      border-bottom: 2px solid var(--teal);
+      vertical-align: top;
+    }
+    .market-table tbody td {
+      padding: 1.1rem .9rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: .875rem;
+      color: var(--slate-2);
+      line-height: 1.6;
+    }
+    .market-table tbody td p { margin: 0 0 .5em; font-size: .875rem; color: var(--slate-2); }
+    .market-table tbody td ul { margin: 0; padding-left: 1.2rem; }
+    .market-table tbody td li { margin-bottom: .3rem; font-size: .875rem; color: var(--slate-2); }
+    .market-table tbody tr:last-child td { border-bottom: none; }
+    .mkt-highlight {
+      color: var(--teal-deep);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      display: block;
+      margin-bottom: .5rem;
+    }
+    .mkt-competitor-tag {
+      display: inline-block;
+      background: var(--cream-2);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: .8rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-bottom: .4rem;
+    }
+
+    /* =========================================================
+       STAKEHOLDER ANALYSIS TABLE (9 columns, 4 data rows)
+       ========================================================= */
+    .sh-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 1400px;
+    }
+    .sh-table thead th {
+      background: var(--cream-2);
+      color: var(--slate);
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: .825rem;
+      padding: 1rem .85rem;
+      text-align: left;
+      border-bottom: 2px solid var(--line);
+      vertical-align: top;
+    }
+    .sh-table tbody td {
+      padding: .9rem .85rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      font-size: .85rem;
+      color: var(--slate-2);
+      line-height: 1.55;
+    }
+    .sh-table tbody tr:last-child td { border-bottom: none; }
+    .sh-table tbody tr:hover td { background: rgba(220, 241, 238, 0.45); }
+    .sh-name {
+      font-weight: 700;
+      color: var(--slate) !important;
+      min-width: 130px;
+    }
+
+    /* Commitment / resistance level badges */
+    .commit-badge {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .commit-badge.high   { background: var(--teal);     color: #fff; }
+    .commit-badge.medium { background: #FFF3C8;         color: #7A5D00; }
+    .commit-badge.low    { background: var(--sage-soft); color: #3D6B39; }
+
+    /* =========================================================
+       RESEARCH — photo variant visual
+       ========================================================= */
+    .research-visual.research-photo {
+      background: var(--cream-2);
+      padding: 0;
+    }
+    .research-visual.research-photo::before { display: none; }
+    .research-visual.research-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      display: block;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
     @media (max-width: 960px) {
       .hero-grid,
       .product-grid,
@@ -698,6 +883,7 @@
       .hero { min-height: auto; padding: 2rem 0; }
       .hero-grid { padding: 2.5rem 0; }
       section { padding: 4rem 0; }
+      .mkt-kpi-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 680px) {
       .nav-links {
@@ -723,6 +909,7 @@
       .team-grid { grid-template-columns: 1fr; }
       h1 { font-size: 2.1rem; }
       .extearna-block, .market-card { padding: 1.75rem; }
+      .mkt-kpi-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -733,9 +920,9 @@
      ========================================================= -->
 <header class="navbar" id="navbar">
   <div class="container nav-inner">
+    <!-- Logo image — sourced from website content/earicular-logo.png -->
     <a href="#home" class="brand">
-      <span class="brand-mark" aria-hidden="true"></span>
-      EARICULAR
+      <img src="website content/earicular-logo.png" alt="Earicular" class="brand-logo" />
     </a>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -882,8 +1069,8 @@
     <!-- Featured Extearna media block -->
     <div class="extearna-block reveal" style="margin-top:3rem;">
       <div class="extearna-img">
-        <!-- REPLACE: swap src with actual photo path -->
-        <img src="website content/extearna.jpg" alt="Extearna costal cartilage allograft" />
+        <!-- Extearna product photo — sourced from website-photos/extearna/extearnalarge.JPG -->
+        <img src="website content/website-photos/extearna/extearnalarge.JPG" alt="Extearna costal cartilage allograft — MTF Biologics" />
       </div>
       <div>
         <span class="tag">Featured Material</span>
@@ -929,8 +1116,10 @@
           as native tissue takes over.
         </p>
       </div>
-      <div class="research-visual" aria-hidden="true">
-        <div class="research-icon">💧</div>
+      <!-- Lab photo: mechanical testing of the allograft material -->
+      <div class="research-visual research-photo">
+        <img src="website content/website-photos/extearna/extearnamechanicaltesting.JPEG"
+             alt="Mechanical testing of Extearna costal cartilage allograft" />
       </div>
     </div>
 
@@ -944,8 +1133,10 @@
           bioink carries the biochemical cues of native cartilage, then gets bioprinted into auricular constructs.
         </p>
       </div>
-      <div class="research-visual" aria-hidden="true">
-        <div class="research-icon">🧫</div>
+      <!-- Lab photo: material testing sample -->
+      <div class="research-visual research-photo">
+        <img src="website content/website-photos/extearna/extearnatesting2.JPG"
+             alt="Extearna allograft material testing" />
       </div>
     </div>
 
@@ -960,8 +1151,10 @@
           without an ear during the most socially formative years.
         </p>
       </div>
-      <div class="research-visual" aria-hidden="true">
-        <div class="research-icon">⏳</div>
+      <!-- Lab photo: Extearna costal cartilage allograft (product reference) -->
+      <div class="research-visual research-photo">
+        <img src="website content/website-photos/extearna/extearnatesting.JPEG"
+             alt="Extearna costal cartilage allograft" />
       </div>
     </div>
 
@@ -979,8 +1172,10 @@
           and surgeons no longer need to suture an ear pre-operation.
         </p>
       </div>
-      <div class="research-visual" aria-hidden="true">
-        <div class="research-icon">🖨️</div>
+      <!-- Lab photo: 3D bioprinting G-code setup -->
+      <div class="research-visual research-photo">
+        <img src="website content/website-photos/printing/gcode.JPG"
+             alt="3D bioprinter G-code path planning for auricular construct" />
       </div>
     </div>
   </div>
@@ -1051,20 +1246,171 @@
 </section>
 
 <!-- =========================================================
-     6. MARKET STRATEGY (PLACEHOLDER)
+     6. MARKET STRATEGY
      ========================================================= -->
 <section id="market">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Market Strategy</span>
-      <h2>In progress</h2>
+      <h2>A growing market, a clear opportunity</h2>
+      <p>The global cartilage repair market is expanding rapidly — and allograft-based solutions are at the forefront of that growth.</p>
     </div>
-    <div class="market-card reveal">
-      <div class="market-icon" aria-hidden="true">📊</div>
-      <h3>Market analysis coming soon</h3>
-      <p>Our team is finalizing the competitive landscape, payer pathways, and adoption strategy. Check back for updates.</p>
-      <div class="progress-bar" aria-hidden="true"><span></span></div>
+
+    <!-- KPI stat cards -->
+    <div class="mkt-kpi-grid reveal">
+      <div class="mkt-kpi-card">
+        <div class="mkt-kpi-icon">💰</div>
+        <div class="mkt-kpi-value">$5.98B</div>
+        <div class="mkt-kpi-label">Current Global Market (2024)</div>
+      </div>
+      <div class="mkt-kpi-card">
+        <div class="mkt-kpi-icon">📈</div>
+        <div class="mkt-kpi-value">$7.65B</div>
+        <div class="mkt-kpi-label">5-Year Market Projection</div>
+      </div>
+      <div class="mkt-kpi-card">
+        <div class="mkt-kpi-icon">🚀</div>
+        <div class="mkt-kpi-value">5.1%</div>
+        <div class="mkt-kpi-label">CAGR 2025–2030</div>
+      </div>
+      <div class="mkt-kpi-card">
+        <div class="mkt-kpi-icon">🌎</div>
+        <div class="mkt-kpi-value">51.5%</div>
+        <div class="mkt-kpi-label">North American Revenue Share</div>
+      </div>
     </div>
+
+    <!-- Market Overview Table -->
+    <div class="mkt-subsection reveal">
+      <h3 class="mkt-subsection-title">Market Overview</h3>
+      <div class="table-wrap">
+        <table class="market-table">
+          <thead>
+            <tr>
+              <th>Market Size (Current)</th>
+              <th>Market Size (Future)</th>
+              <th>Market Trends</th>
+              <th>Market Growth Rate</th>
+              <th>Key Success Factors</th>
+              <th>Main Competitors</th>
+              <th>Main Competitor Key Patents</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <strong class="mkt-highlight">$5.98 billion</strong>
+                <p>The global cartilage repair market was estimated at USD 5.98 billion in 2024. North American cartilage repair held the largest revenue share at 51.5% of the industry. Demand primarily from reconstructive and ENT surgeries.</p>
+              </td>
+              <td>
+                <strong class="mkt-highlight">$7.65 billion</strong>
+                <p>(5-year projection)</p>
+                <p>The global cartilage repair market is expected to grow at a CAGR of 5.1% from 2025 to 2030. The market report shows both cell and non-cell based treatment modalities [5].</p>
+              </td>
+              <td>
+                <p>Cell-based modalities segment held the largest market share of <strong>60.5%</strong> in 2024 and is expected to grow at the fastest rate.</p>
+                <p>Intrinsic repair stimulus segment held the largest market revenue share [5].</p>
+                <p>Predicting shift in allograft use due to shorter operating times and increased performance.</p>
+              </td>
+              <td>
+                <strong class="mkt-highlight">5.1% CAGR</strong>
+                <p>(5-year projection, 2025–2030)</p>
+              </td>
+              <td>
+                <ul>
+                  <li>Surgeon adoption</li>
+                  <li>Regulatory compliance</li>
+                  <li>Tissue (cadaver) availability</li>
+                  <li>Clinical evidence</li>
+                </ul>
+              </td>
+              <td>
+                <p><span class="mkt-competitor-tag">~20.7%</span><br/><strong>Stryker Corporation</strong></p>
+                <p><span class="mkt-competitor-tag">~27.1%</span><br/><strong>Zimmer Biomet</strong></p>
+                <p>Stryker's MEDPOR® offers synthetic (porous polyethylene) ear implants for reconstructive surgery. Available disclosures focus on broader segments; product-category level not disclosed.</p>
+              </td>
+              <td>
+                <p><strong>U.S. Patent No. 7655047</strong><br/><em>Craniofacial Implant</em></p>
+                <p>Polyethylene matrix and titanium mesh design for fibrovascular ingrowth. Assigned to Porex Surgical, Inc., acquired by Stryker. Referenced in product literature for MEDPOR TITAN [6].</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Stakeholder Analysis Table -->
+    <div class="mkt-subsection reveal">
+      <h3 class="mkt-subsection-title">Stakeholder Analysis</h3>
+      <div class="table-wrap">
+        <table class="sh-table">
+          <thead>
+            <tr>
+              <th>Stakeholder</th>
+              <th>Current Commitment</th>
+              <th>Desired Commitment</th>
+              <th>Change Impact</th>
+              <th>Description of Change &amp; Impact</th>
+              <th>Resistance Level</th>
+              <th>Positive Factors</th>
+              <th>Resistance Factors</th>
+              <th>Tactics &amp; Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1: Surgeons -->
+            <tr>
+              <td class="sh-name">Plastic surgeons / ENT surgeons</td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td><span class="commit-badge high">High</span></td>
+              <td><span class="commit-badge high">High</span></td>
+              <td>Surgical procedures will adapt to product; must adjust to material, composition, and structure to reduce patient morbidity</td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td>Lower patient readmission, morbidity (study [3] shows nearly no site morbidity with younger donors), long-term outcomes</td>
+              <td>Graft integration surgical procedures, availability of product (cartilage from cadavers), can be harder to use than synthetics; study [1] claims higher aesthetic outcomes with PPE implants</td>
+              <td>Provide clinical trial data, conduct demos</td>
+            </tr>
+            <!-- Row 2: Hospital Administrators -->
+            <tr>
+              <td class="sh-name">Hospital administrators</td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td><span class="commit-badge high">High</span></td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td>Reduction in surgery time, cost, and inventory management; fewer donor site complications; reduced cost of care</td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td>Lower patient readmissions; study [4] shows considerably less complication rates when compared to traditional IIHC grafts</td>
+              <td>Budget approval cycles, high costs of allograft</td>
+              <td>Cost and budget analyses, data showing success</td>
+            </tr>
+            <!-- Row 3: Patients -->
+            <tr>
+              <td class="sh-name">Patients</td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td><span class="commit-badge high">High</span></td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td>Access to a less invasive reconstructive auricular graft with better integration. "Despite the higher costs, FFRG can provide a sufficient amount of tissue for grafting avoiding donor site complications and reducing the operative time" [1]</td>
+              <td><span class="commit-badge low">Low</span></td>
+              <td>Less invasive surgery, faster recovery times, better tissue integration, no autologous grafting, better aesthetic outcome</td>
+              <td>Cost, lack of cadaver donor, less visibility. [2] claims that cost may be higher for FFRG grafts than autologous or IIHC</td>
+              <td>Advertising, marketing, educational brochures, outreach with safety and regulatory compliance</td>
+            </tr>
+            <!-- Row 4: Advisors -->
+            <tr>
+              <td class="sh-name">Advisors, Mentors</td>
+              <td><span class="commit-badge medium">Medium</span></td>
+              <td><span class="commit-badge high">High</span></td>
+              <td><span class="commit-badge high">High</span></td>
+              <td>Provides guidance and approves key decisions; must be updated regularly</td>
+              <td><span class="commit-badge low">Low</span></td>
+              <td>Interested in student success and seeing tangible outcomes</td>
+              <td>Time limited; communication restricted due to busy schedules</td>
+              <td>Weekly check-ins, progress reports, involvement in critical decisions, defined meetings</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1204,7 +1550,11 @@
      ========================================================= -->
 <footer>
   <div class="container footer-grid">
-    <p class="footer-copy">© 2025 Earicular — UC Irvine BME Senior Design</p>
+    <div style="display:flex; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <!-- Logo repeated in footer -->
+      <img src="website content/earicular-logo.png" alt="Earicular" class="footer-logo" />
+      <p class="footer-copy" style="margin:0;">© 2025 Earicular — UC Irvine BME Senior Design</p>
+    </div>
     <ul class="footer-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#product">Product</a></li>
