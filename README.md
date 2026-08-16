@@ -2,9 +2,7 @@
 
 Project website for a UC Irvine senior biomedical engineering capstone on auricular (external ear) reconstruction. Built and deployed solo.
 
-<!-- TODO(jovan): add one screenshot of the live site here (the hero is the first thing a visitor sees).
-     Capture earicular.uci.design, save it to assets/preview.png, and uncomment the line below. -->
-<!-- ![Site preview](assets/preview.png) -->
+![Earicular site hero](assets/preview.png)
 
 ## Overview
 
