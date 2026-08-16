@@ -1,25 +1,46 @@
-# Earicular
+# Earicular — Auricular Reconstruction Capstone Website
 
-UC Irvine BME 180C Senior Design Capstone — tissue-engineered auricular reconstruction using 3D bioprinted constructs with Extearna® costal cartilage allograft.
+Project website for a UC Irvine senior biomedical engineering capstone on auricular (external ear) reconstruction. Built and deployed solo.
 
-## Structure
+<!-- TODO(jovan): add one screenshot of the live site here (the hero is the first thing a visitor sees).
+     Capture earicular.uci.design, save it to assets/preview.png, and uncomment the line below. -->
+<!-- ![Site preview](assets/preview.png) -->
 
+## Overview
+
+This is the public-facing website for our senior capstone project on auricular reconstruction, presenting the team's research, design work, and findings. I designed, built, and deployed the entire site myself as part of the broader group project.
+
+Live site: [earicular.uci.design](https://earicular.uci.design)
+
+## My Role
+
+- **Website:** I wrote all of the site code (HTML/CSS/JS) and handled deployment.
+- **Biomechanical analysis:** I also developed the MATLAB analysis pipeline for the capstone's mechanical testing, converting raw Instron force-displacement data into engineering stress-strain curves and extracting mechanical properties (ultimate tensile strength, strain at failure, resilience, toughness, and Young's modulus by linear regression).
+
+The research, experimental design, figures, and other technical work presented on the site were produced collaboratively by the full capstone team; my individual contributions are the two items above.
+
+## Tech Stack
+
+Plain HTML, CSS, and JavaScript, with no framework and no build step. The entire site is a single self-contained `index.html`: all styles live in one `<style>` block and all behavior in one `<script>` at the end of the file. The only external dependency is Google Fonts. Deployed via SFTP.
+
+## Project Structure
+
+```text
+├─ index.html                        # entire site: HTML, inline CSS, inline JS
+└─ website content/
+   ├─ earicular-logo.png             # navbar + footer logo
+   ├─ extearna.jpg                   # product photo (not used in current build)
+   ├─ Website Content.pdf            # source reference material
+   └─ website-photos/
+      ├─ extearna/                   # product and lab testing photos
+      ├─ gelma/
+      │  ├─ bioink.gif               # animated bioink extrusion (used on site)
+      │  ├─ bioinkcured.MOV          # raw clip (not used in current build)
+      │  └─ bioinktesting.mov        # raw clip (not used in current build)
+      └─ printing/                   # G-code and bioprinter photos
 ```
-index.html                          # entire site (HTML, CSS, JS in one file)
-website content/
-  earicular-logo.png                # navbar + footer logo
-  extearna.jpg                      # original product photo (unused)
-  Website Content.pdf               # source reference material
-  website-photos/
-    extearna/                       # product and lab testing photos
-    gelma/
-      bioink.gif                    # animated bioink extrusion (converted from .mov)
-      bioinkcured.MOV
-      bioinktesting.mov
-    printing/                       # G-code and bioprinter photos
-```
 
-## Sections
+The site is one page with anchor-linked sections:
 
 | Section | Anchor |
 |---|---|
@@ -31,10 +52,10 @@ website content/
 | Team | `#team` |
 | Contact | `#contact` |
 
-## Editing
+## Running it Locally
 
-Open `index.html` in any code editor. All CSS lives in `<style>` and all JS lives in `<script>` at the bottom of the same file.
+Open `index.html` in a browser, or serve the folder with any static server (e.g. `python -m http.server`). All CSS and JS are inline, so there is nothing to build or install.
 
-**To add team photos:** find the `.avatar` div for a team member, remove the `<span>` initials, and uncomment the `<img>` tag with the correct file path.
+## Acknowledgments
 
-**To preview locally:** open `index.html` directly in a browser, or use the Live Server extension in VS Code.
+Built as the website for the Earicular senior capstone team at UC Irvine. The project's research, experimental work, and figures were a group effort; this repository contains the website code I authored.
